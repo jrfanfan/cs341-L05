@@ -8,7 +8,7 @@ const swaggerDefinition = {
         description: 'by Fanfan Jean Renel', // Path to the API routes in your Node.js application
     },
     servers:[
-    {url: "http://localhost:8080"
+    {url: "http://localhost:5000"
     },
     ],
 };

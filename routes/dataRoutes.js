@@ -24,6 +24,36 @@ const router = express.Router()
 *               type: integer   
 */
 
+/**
+* @swagger
+* /data:
+*   post:
+*    tags:
+*      - New Contact
+*    requestBody:
+*      required: true
+*      content:
+*        "application/json":
+*           schema:
+*                type: array
+*                items:
+*                  type: object
+*                  properties:
+*                    firstname:
+*                      type: string
+*                    lastname:
+*                      type: string
+*                    email:
+*                     type: string
+*                    idnumber:
+*                      type: integer
+*    responses:
+*       '201':
+*         description: "The contact was successfully created"
+*       '400':
+*         description: "fail"       
+*          
+*/
 
 /**
 * @swagger
@@ -43,8 +73,6 @@ const router = express.Router()
 *                items:
 *                  type: object
 *                  properties:
-*                    _id:
-*                      type: string
 *                    firstname:
 *                      type: string
 *                    lastname:
