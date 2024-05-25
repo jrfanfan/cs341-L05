@@ -2,9 +2,13 @@ const express = require('express')
 const dataControllers = require('../controllers/dataControllers')
 const router = express.Router()
 
+
+
+
 /**
 * @swagger
 * components:
+*   securitySchemes:
 *   schemas:
 *      Contacts:
 *          type: object

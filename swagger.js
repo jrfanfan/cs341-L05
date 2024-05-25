@@ -7,6 +7,18 @@ const swaggerDefinition = {
         version: '1.0.0',
         description: 'by Fanfan Jean Renel', // Path to the API routes in your Node.js application
     },
+    components: {
+        securitySchemes: {
+            bearerAuth: {
+                type: 'http',
+                scheme: 'bearer',
+                bearerFormat: 'JWT',
+            }
+        }
+    },
+    security: [{
+        bearerAuth: []
+    }],
     servers:[
     {url: "http://localhost:5000"
     },

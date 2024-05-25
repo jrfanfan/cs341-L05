@@ -4,9 +4,11 @@ const cors = require("cors")
 const morgan = require("morgan")
 const mongoose = require('./connectDB/connectMongoose')
 const bodyParser = require('body-parser')
-const swaggerUI = require('swagger-ui-express');
-const swaggerSpec = require('./swagger');
-const dataRoute = require('./routes/dataRoutes');
+const swaggerUI = require('swagger-ui-express')
+const swaggerSpec = require('./swagger')
+const dataRoute = require('./routes/dataRoutes')
+const static = require("./routes/indexRoute")
+
 
 
 
@@ -20,8 +22,8 @@ app.use(morgan("dev"))
 app.use(express.urlencoded({ extended: true}));
 app.use(bodyParser.urlencoded({ extended: false}));
 app.use(bodyParser.json());
-
 mongoose(); 
+
 
 
 
@@ -29,7 +31,8 @@ mongoose();
 app.use('/api-docs', swaggerUI.serve, swaggerUI.setup(swaggerSpec));
 
 
-
+// Static index route
+app.use(static);
 //route data
 app.use('/', dataRoute);
 
