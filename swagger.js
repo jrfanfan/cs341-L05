@@ -20,7 +20,7 @@ const swaggerDefinition = {
         bearerAuth: []
     }],
     servers:[
-    {url: "http://localhost:5000"
+    {url: "https://cs341-l05.onrender.com/"
     },
     ],
 };
