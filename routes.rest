@@ -1,0 +1,31 @@
+// LOCALHOST
+### Get all contacts
+GET http://localhost:8080/data
+
+
+### Create contact
+POST http://localhost:8080/data HTTP/1.1
+content-type: application/json
+
+{
+    "firstname": "Jean Renel",
+    "lastname": "Fanfan",
+    "email": "jrfanfan@yahoo.fr",
+    "idnumber": 123
+    
+}
+
+
+### PUT contact
+PUT http://localhost:8080/data/ HTTP/1.1
+content-type: application/json
+
+{
+   "firstname": "Jean Renel",
+    "lastname": "Fanfan",
+    "email": "jrfanfan@yahoo.fr",
+    "idnumber": 123423
+}
+### DELETE contact
+DELETE http://localhost:8080/data/ HTTP/1.1
+

@@ -1,7 +1,7 @@
 const express = require('express')
 const dataControllers = require('../controllers/dataControllers')
 const router = express.Router()
-
+const { contactValidationRules, validate } = require('../validation/validator')
 
 
 
@@ -33,7 +33,7 @@ const router = express.Router()
 * /data:
 *   post:
 *    tags:
-*      - New Contact
+*      - Add a New Contact
 *    requestBody:
 *      required: true
 *      content:
@@ -64,7 +64,7 @@ const router = express.Router()
 * /data:
 *   get:
 *    tags:
-*     - Contacts
+*     - View Contacts
 *    responses:
 *       '200':
 *         description: "success"
@@ -87,9 +87,82 @@ const router = express.Router()
 *                      type: integer
 */
 
+/**
+* @swagger
+* /data/{id}:
+*   put:
+*    tags: [UpdateContact]
+*    parameters:
+*       - in: path
+*         name: id
+*         schema:
+*           type: string
+*         required: true
+*         description: contact id
+*    requestBody:
+*      required: true
+*      content:
+*        "application/json":
+*           schema:
+*                type: array
+*                items:
+*                  type: object
+*                  properties:
+*                    firstname:
+*                      type: string
+*                    lastname:
+*                      type: string
+*                    email:
+*                     type: string
+*                    idnumber:
+*                      type: integer
+*    responses:
+*       '201':
+*         description: "The contact was successfully updated"
+*       '400':
+*         description: "fail"       
+*/
 
-router.post('/data', dataControllers.postData);
+/**
+* @swagger
+* /data/{id}:
+*   delete:
+*    tags: [DeleteContact]
+*    parameters:
+*       - in: path
+*         name: id
+*         schema:
+*           type: string
+*         required: true
+*         description: contact id
+*    requestBody:
+*      required: true
+*      content:
+*        "application/json":
+*           schema:
+*                type: array
+*                items:
+*                  type: object
+*                  properties:
+*                    firstname:
+*                      type: string
+*                    lastname:
+*                      type: string
+*                    email:
+*                     type: string
+*                    idnumber:
+*                      type: integer
+*    responses:
+*       '201':
+*         description: "The contact was successfully removed"
+*       '400':
+*         description: "fail"       
+*/
+
+router.post('/data', contactValidationRules(), validate, dataControllers.postData);
 router.get('/data', dataControllers.findData);
+router.put('/data/:id', contactValidationRules(), validate, dataControllers.updateDataById);
+router.delete('/data/:id', dataControllers.deleteDataById);
 
 
 module.exports= router;
