@@ -117,7 +117,7 @@ const { contactValidationRules, validate } = require('../validation/validator')
 *                    idnumber:
 *                      type: integer
 *    responses:
-*       '201':
+*       '200':
 *         description: "The contact was successfully updated"
 *       '400':
 *         description: "fail"       

@@ -8,6 +8,7 @@ const swaggerUI = require('swagger-ui-express')
 const swaggerSpec = require('./swagger')
 const dataRoute = require('./routes/dataRoutes')
 const static = require("./routes/indexRoute")
+const utilities = require("./utilities/index")
 
 
 
@@ -34,7 +35,7 @@ app.use('/api-docs', swaggerUI.serve, swaggerUI.setup(swaggerSpec));
 // Static index route
 app.use(static);
 //route data
-app.use('/', dataRoute);
+app.use('/', utilities.handleErrors(dataRoute));
 
   
 
@@ -45,6 +46,18 @@ app.use('/', dataRoute);
 const PORT = process.env.PORT;
 const HOST = process.env.HOST;
 
+/* ***********************
+* Express Error Handler
+* Place after all other middleware
+*************************/
+app.use(async (err, req, res, next) => {
+  console.error(`Error at: "${req.originalUrl}": ${err.message}`)
+  if(err.status == 404){ message = err.message} else {message = 'Oh no! There was a crash. Maybe try a different route?'}
+  res.render("errors/error", {
+    title: err.status || 'Server Error',
+    message
+  })
+})
 
 /* ***********************
  * Log statement to confirm server operation
